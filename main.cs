@@ -1,9 +1,9 @@
 using System;
-using System.Collection.Generic;
+using System.Collections.Generic;
 using static System.Random;
 using System.Text;
 
-namespace Hangman
+namespace HangmanAppTest
 {
     internal class Program{
         private static void printHangman(int incorrect){
@@ -93,7 +93,7 @@ namespace Hangman
             "galaxy", "horizon", "iceberg", "jellyfish", "kayak", "lighthouse", 
             "meteor", "nebula", "ostrich", "pirate", "quasar", "robot", 
             "satellite", "tornado", "ufo", "volleyball", "wildflower", "xenon", 
-            "yogurt", "zeppelin", "avatar", "bonfire", "cloud", "drone", "diddy"}
+            "yogurt", "zeppelin", "avatar", "bonfire", "cloud", "drone", "diddy"};
             int index = random.Next(wordDictionary.Count);
             string randomWord = wordDictionary[index];
 
@@ -110,10 +110,10 @@ namespace Hangman
                 foreach(char letter in currentLettersGuessed){
                     Console.Write(letter + " ");
                 }
-                Console.Write("\nGuess yo:")
+                Console.Write("\nGuess yo:");
                 char letterCorrect = Console.ReadLine()[0];
                 if(currentLettersGuessed.Contains(letterCorrect)){
-                    Console.Write("\nThis letter you chose already")
+                    Console.Write("\nThis letter you chose already");
                     printHangman(amountOfTimesWrong);
                     currentLettersRight = printWord(currentLettersGuessed, randomWord);
                     printLines(randomWord);
@@ -124,9 +124,22 @@ namespace Hangman
                             right = true;
                         }
                     }
-                    if(right){}
+                    if(right){
+                         currentLettersGuessed.Add(letterCorrect);
+                        currentLettersRight = printWord(currentLettersGuessed, randomWord);
+                        Console.Write("\r\n");
+                        printLines(randomWord);
+                    }else{
+                        amountOfTimesWrong += 1;
+                        currentLettersGuessed.Add(letterCorrect);
+                        printHangman(amountOfTimesWrong);
+                        currentLettersRight = printWord(currentLettersGuessed, randomWord);
+                        Console.Write("\r\n");
+                        printLines(randomWord);
+                    }
                 }
             }
+            Console.WriteLine("\r\nGame over!!!");
         }       
     }    
 }
