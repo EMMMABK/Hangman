@@ -77,7 +77,56 @@ namespace Hangman
         }
         
         static void Main(string[] args){
-            
+            Console.WriteLine("My first Hangman on C#");
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>");
+            Random random = new Random();
+            List<String> wordDictionary = new List<String> {"apple", "banana", "car", "dog", "elephant", "flower", "guitar", 
+            "house", "island", "jungle", "kite", "lemon", "mountain", 
+            "notebook", "ocean", "pencil", "quilt", "rainbow", "sun", 
+            "tree", "umbrella", "volcano", "waterfall", "xylophone", 
+            "yacht", "zebra", "airplane", "bridge", "castle", "dolphin", 
+            "engine", "forest", "garden", "helicopter", "igloo", "jacket", 
+            "kangaroo", "lantern", "microphone", "nebula", "octopus", 
+            "penguin", "queen", "rocket", "spaceship", "telescope", 
+            "universe", "village", "whale", "x-ray", "yo-yo", "zeppelin", 
+            "asteroid", "bicycle", "comet", "dragon", "explorer", "fireworks", 
+            "galaxy", "horizon", "iceberg", "jellyfish", "kayak", "lighthouse", 
+            "meteor", "nebula", "ostrich", "pirate", "quasar", "robot", 
+            "satellite", "tornado", "ufo", "volleyball", "wildflower", "xenon", 
+            "yogurt", "zeppelin", "avatar", "bonfire", "cloud", "drone", "diddy"}
+            int index = random.Next(wordDictionary.Count);
+            string randomWord = wordDictionary[index];
+
+            foreach (char x in randomWord){
+                Console.Write("_ ");
+            }
+            int lengthOfWordToGuess = randomWord.Length;
+            int amountOfTimesWrong = 0;
+            List<char> currentLettersGuessed = new List<char>();
+            int currentLettersRight = 0;
+
+            while(amountOfTimesWrong != 6 && currentLettersRight != lengthOfWordToGuess){
+                Console.Write("\nLetters:");
+                foreach(char letter in currentLettersGuessed){
+                    Console.Write(letter + " ");
+                }
+                Console.Write("\nGuess yo:")
+                char letterCorrect = Console.ReadLine()[0];
+                if(currentLettersGuessed.Contains(letterCorrect)){
+                    Console.Write("\nThis letter you chose already")
+                    printHangman(amountOfTimesWrong);
+                    currentLettersRight = printWord(currentLettersGuessed, randomWord);
+                    printLines(randomWord);
+                }else{
+                    bool right = false;
+                    for (int i=0; i < randomWord.Length; i++){
+                        if(letterCorrect==randomWord[i]){
+                            right = true;
+                        }
+                    }
+                    if(right){}
+                }
+            }
         }       
     }    
 }
