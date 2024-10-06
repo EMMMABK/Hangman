@@ -53,7 +53,20 @@ namespace Hangman
             }
         }
         
-        private static 
+        private static int printWord(List<char>guessedLetters, String randomWord){
+            int count = 0;
+            int correctLetters = 0;
+            Console.Write("\r\n");
+            foreach (char i in randomWord){
+                if(guessedLetters.Contains(i)){
+                    Console.Write(i + " ");
+                    correctLetters++;
+                }else{
+                    Console.Write(" ");
+                }
+                count++;
+            }return correctLetters;
+        }
         
         static void Main(string[] args){
             
