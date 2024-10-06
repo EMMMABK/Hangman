@@ -68,6 +68,14 @@ namespace Hangman
             }return correctLetters;
         }
         
+        private static void printLines(String randomWord){
+            Console.Write("\r");
+            foreach(char i in randomWord){
+                Console.OutputEncoding = System.Text.Encoding.Unicode;
+                Console.Write("\u0305");
+            }
+        }
+        
         static void Main(string[] args){
             
         }       
