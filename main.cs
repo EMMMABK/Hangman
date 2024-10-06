@@ -139,6 +139,11 @@ namespace HangmanAppTest
                     }
                 }
             }
+            if(currentLettersRight==lengthOfWordToGuess){
+                Console.WriteLine("\r\nYou won!");
+            }else{
+                Console.WriteLine("\r\nYou lose, looser!");
+            }
             Console.WriteLine("\r\nGame over!!!");
         }       
     }    
